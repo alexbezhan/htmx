@@ -873,9 +873,10 @@ return (function () {
         function cleanUpElement(element) {
             triggerEvent(element, "htmx:beforeCleanupElement")
             deInitNode(element);
-            if (element.children) { // IE
-                forEach(element.children, function(child) { cleanUpElement(child) });
-            }
+            // slow, and not needed on modern browsers (hopefully) https://github.com/bigskysoftware/htmx/issues/879#issuecomment-1102374832
+            // if (element.children) { // IE
+            //     forEach(element.children, function(child) { cleanUpElement(child) });
+            // }
         }
 
         function swapOuterHTML(target, fragment, settleInfo) {
